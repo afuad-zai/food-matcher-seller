@@ -1,29 +1,21 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController, ToastController, MenuController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-
+import { AccountProvider } from '../providers/account/account';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = "LoginPage";
 
-  pages: Array<{title: string, component: any}>;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+    public accountPvdr: AccountProvider, public alertCtrl: AlertController, public toastCtrl: ToastController,
+    private menuCtrl: MenuController) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
 
   }
 
@@ -33,12 +25,44 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.menuCtrl.enable(this.accountPvdr.loginStatus(), 'myMenu');
+
     });
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    if ("HomePage" == page) {
+      this.nav.popToRoot();
+    } else {
+      this.nav.push(page);
+    }
+  }
+
+  logout() {
+    this.alertCtrl.create({
+      title: 'Sign out',
+      message: 'Do you want to sign out?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Sign out',
+          handler: () => {
+            this.accountPvdr.logout().then(() => {
+              this.toastCtrl.create({
+                message: 'You have signed out!',
+                duration: 3000,
+                position: 'top'
+              }).present();
+            })
+          }
+        }
+      ]
+    }).present();
   }
 }

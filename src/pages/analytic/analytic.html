@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Order Analysis</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-row>
+      <ion-col margin-left>
+        <ion-label>Time Frame</ion-label>
+      </ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col text-end>
+        <ion-label>1 day</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-toggle (ionChange)="changeGraph()"></ion-toggle>
+      </ion-col>
+      <ion-col text-end margin-right>
+        <ion-label>1 week</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <div *ngIf="!showChart" class="emptyState">
+    <img src="./assets/imgs/search.svg">
+    <h2 text-center>No data.</h2>
+  </div>
+
+  <div *ngIf="showChart">
+    <ion-card>
+      <ion-card-header>
+        Order Summary
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Time-Frequency
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,54 @@
+page-edit-menu {
+  ion-datetime {
+    margin: auto;
+  }
+
+  .item-profile {
+    .item-md.item-block .item-inner {
+      border-bottom: 0px;
+    }
+
+    .item-avatar > img:first-child {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+    }
+  }
+
+  .item-middle {
+    margin-top: 8px;
+    margin: auto;
+    width: 70%;
+
+    .button-middle {
+      height: 45px;
+      margin-top: 16px;
+      margin-left: 16px;
+      width: calc(100% - 24px);
+    }
+  }
+
+  .item-md.item-block .item-inner {
+    border-bottom: 0px;
+  }
+
+  ion-input {
+    border-radius: 50px 50px 50px 50px;
+    .text-input-md {
+      text-align: center;
+    }
+  }
+
+  ion-label[fixed] {
+    padding-left: 10px;
+  }
+
+  .label-price {
+    flex: 0 0 40px;
+    min-width: 40px;
+  }
+
+  .select-md {
+    padding: 0px;
+  }
+}

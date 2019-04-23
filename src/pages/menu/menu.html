@@ -1,0 +1,68 @@
+<!--
+  Generated template for the MenuPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Menu
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addMenu()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="menuList && !menuList.length" class="emptyState">
+    <img src="./assets/imgs/notification.svg">
+    <h2 text-center>No menu added.</h2>
+  </div>
+
+  <ion-list *ngIf="menuList && menuList.length">
+    <ion-item-sliding *ngFor="let item of menuList; let i=index" class="item-thumbnail-left item-text-wrap"
+      #slidingItem>
+      <ion-item>
+        <ion-thumbnail item-start class="food-image">
+          <img [src]="item.imageURL" (error)="menuImg.src='./assets/imgs/placeholder_food.png'" #menuImg>
+        </ion-thumbnail>
+
+        <ion-row no-padding>
+          <div class="row padding-none">
+            <p class="text-size"><strong [innerHTML]="item.name"></strong></p>
+          </div>
+        </ion-row>
+
+        <ion-row no-padding>
+          <ion-col no-padding style="text-align: left">
+            <span class="text-size2">RM {{item.price | number:'1.2-2'}}</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row no-padding>
+          <p text-wrap class="createdDate">{{item.preparation_time | completionTime }}</p>
+        </ion-row>
+      </ion-item>
+
+      <ion-item-options no-padding>
+        <button ion-button icon-only (click)="editMenu(item,i); closeSliding(slidingItem)">
+          <ion-icon name="settings"></ion-icon>
+        </button>
+
+        <!-- <button ion-button icon-only (click)="addIngredient(item,i); closeSliding(slidingItem)">
+          <ion-icon name="add"></ion-icon>
+        </button> -->
+
+        <button ion-button icon-only (click)="deleteItem(item, i); closeSliding(slidingItem)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+</ion-content>

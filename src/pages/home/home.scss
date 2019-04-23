@@ -1,3 +1,34 @@
 page-home {
+  .item-md ion-thumbnail img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+  }
 
+  .item-md ion-avatar img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+  }
+
+  .item-md ion-icon[item-end] {
+    color: color($colors, danger);
+  }
+
+  ion-item-options .button:last-child {
+    padding-right: 0px;
+  }
+
+  h2 {
+    color: color($colors, light);
+  }
+
+  .button-md {
+    background-color: color($colors, danger);
+  }
+
+  .card-header {
+    margin: 0px;
+    width: 100%;
+  }
 }

@@ -1,0 +1,28 @@
+page-menu {
+  .food-image {
+    img {
+      border-radius: 50%;
+    }
+  }
+  .text-size {
+    font-size: 1.2em;
+  }
+
+  .text-size2 {
+    font-size: 1.1em;
+    line-height: 2em;
+  }
+
+  h2 {
+    color: color($colors, light);
+  }
+
+  .button-md {
+    background-color: color($colors, danger);
+  }
+}
+
+.contact-popover .popover-content {
+  width: 70%;
+  max-height: 70%;
+}

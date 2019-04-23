@@ -1,0 +1,67 @@
+<!--
+  Generated template for the StorePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar #navbar>
+    <ion-title>Store Information</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card no-margin style="width:100%;">
+    <ion-item>
+      <img [src]="image" (error)="profileImage.src='./assets/imgs/placeholder_store.png'" (click)="getPhoto()"
+        #profileImage>
+    </ion-item>
+
+  </ion-card>
+
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Store Name</ion-label>
+      <ion-input text-center type="text" [(ngModel)]="storeInfo.name" (ionChange)="valueChanged()">
+      </ion-input>
+    </ion-item>
+
+    <ion-item class="item-middle right-item" margin-top>
+      <ion-label floating>Store Location</ion-label>
+      <ion-input text-center type="text" [disabled]="true" [(ngModel)]="location" (ionChange)="valueChanged()" style="color: black">
+      </ion-input>
+
+      <button class="geobutton" ion-button icon-only item-end clear (click)="getLocation()">
+        <ion-icon name="locate"></ion-icon>
+      </button>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>Opening Time</ion-label>
+      <ion-datetime text-center displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="openTime"
+        (ngModelChange)="valueChanged()">
+      </ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label floating>Closing Time</ion-label>
+      <ion-datetime text-center displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="closeTime"
+        (ngModelChange)="valueChanged()">
+      </ion-datetime>
+    </ion-item>
+
+
+    <ion-item>
+      <button item-end ion-button round (click)="updateStore()">Update
+        Menu</button>
+    </ion-item>
+  </ion-list>
+
+
+
+</ion-content>

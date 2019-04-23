@@ -1,0 +1,29 @@
+page-login {
+  div#logo {
+    margin-top: 25px;
+    margin-bottom: 12px;
+  }
+  .content {
+    background-color: color($colors, primary);
+  }
+  //   .item {
+  //     background-color: color($colors, primary);
+  //   }
+
+  ion-label[fixed] {
+    padding-left: 10px;
+  }
+  .item-md {
+    margin-top: 8px;
+    padding-right: 16px;
+    border-radius: 50px 50px 50px 50px;
+  }
+
+  ion-input {
+    background-color: #fff;
+    
+    .text-input-md {
+      text-align: center;
+    }
+  }
+}

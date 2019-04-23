@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu id="myMenu" [content]="content">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -6,9 +6,36 @@
   </ion-header>
 
   <ion-content>
+    <ion-item class="item-profile">
+      <div class="item-avatar" text-center>
+        <img [src]="accountPvdr.image" (error)="profileImage.src='./assets/imgs/user.png'" #profileImage>
+      </div>
+      <h1 text-center>{{accountPvdr.name}}</h1>
+    </ion-item>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <button *ngIf="!accountPvdr.loginStatus()" menuClose ion-item (click)="login()">
+        Sign in
+      </button>
+      <button menuClose ion-item (click)="openPage('HomePage')">
+        Home
+      </button>
+      <button menuClose ion-item *ngIf="accountPvdr.loginStatus()" (click)="openPage('StorePage')">
+        Store
+      </button>
+      <button menuClose ion-item *ngIf="accountPvdr.loginStatus()" (click)="openPage('MenuPage')">
+        Menu
+      </button>
+      <button menuClose ion-item *ngIf="accountPvdr.loginStatus()" (click)="openPage('AnalyticPage')">
+        Analytics
+      </button>
+      <button menuClose ion-item (click)="openPage('SettingPage')">
+        Setting
+      </button>
+      <button menuClose ion-item (click)="openPage('SupportPage')">
+        Support
+      </button>
+      <button *ngIf="accountPvdr.loginStatus()" menuClose ion-item (click)="logout()">
+        Sign out
       </button>
     </ion-list>
   </ion-content>
@@ -16,4 +43,4 @@
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="accountPvdr.loginStatus()? 'HomePage': 'LoginPage'" #content swipeBackEnabled="false"></ion-nav>
