@@ -26,7 +26,7 @@ export class QrcodeProvider {
 
   generate(message: string) {
     return new Promise((resolve, reject) => {
-      this.barcodeScanner.encode(this.barcodeScanner.Encode.PHONE_TYPE, message).then((qrcode) => {
+      this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, message).then((qrcode) => {
         resolve(qrcode);
       }).catch((err) => {
         reject(err)
