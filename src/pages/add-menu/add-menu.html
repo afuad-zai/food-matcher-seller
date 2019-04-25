@@ -11,41 +11,48 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-item class="item-profile">
-    <div class="item-avatar" text-center>
+  <ion-card no-margin style="width:100%;">
+    <ion-item>
       <img [src]="imageURL" (error)="profileImage.src='./assets/imgs/placeholder_store.png'" (click)="getPhoto()"
         #profileImage>
-    </div>
-  </ion-item>
-
-  <form [formGroup]="menuForm" class="item-middle">
-    <ion-item margin-top>
-      <ion-input text-center type="text" [formControl]="menuForm.controls['name']" placeholder="Menu name"
-        (ionChange)="valueChanged()">
-      </ion-input>
     </ion-item>
+  </ion-card>
 
-    <ion-item margin-top>
-      <ion-datetime (ngModelChange)="valueChanged()" [formControl]="menuForm.controls['preparation_time']"
-        displayFormat="HH:mm:ss" pickerFormat="HH mm ss" placeholder="Preparation time"></ion-datetime>
-    </ion-item>
+  <form [formGroup]="menuForm">
 
-    <ion-item margin-top>
-      <ion-label class='label-price' fixed *ngIf="menuForm.controls['price'].value">RM</ion-label>
-      <ion-input [style.margin-left]="menuForm.controls['price'].value? '-40px':'0px'" type="number"
-        [formControl]="menuForm.controls['price']" placeholder="Price" (ionChange)="valueChanged()">
-      </ion-input>
-    </ion-item>
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Menu Name</ion-label>
+        <ion-input text-center type="text" [formControl]="menuForm.controls['name']" (ionChange)="valueChanged()">
+        </ion-input>
+      </ion-item>
 
-    <ion-item margin-top>
-      <ion-label fixed>Available</ion-label>
-      <ion-toggle [formControl]="menuForm.controls['available']"></ion-toggle>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Preparation Time</ion-label>
+        <ion-datetime text-center [formControl]="menuForm.controls['preparation_time']" displayFormat="HH:mm:ss"
+          pickerFormat="HH mm ss" (ngModelChange)="valueChanged()">
+        </ion-datetime>
+      </ion-item>
 
-    <div>
-      <button class="button-middle" ion-button outline round [disabled]="!menuForm.valid" (click)="addMenu()">Save
-        Changes</button>
-    </div>
+
+      <ion-item>
+        <ion-label floating>Price (RM)</ion-label>
+        <ion-input text-center type="number" [formControl]="menuForm.controls['price']" (ionChange)="valueChanged()">
+        </ion-input>
+      </ion-item>
+
+
+
+      <ion-item>
+        <ion-label fixed>Hide Menu</ion-label>
+        <ion-toggle [formControl]="menuForm.controls['available']"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <button item-end ion-button round [disabled]="!menuForm.valid" (click)="addMenu()">Add Menu</button>
+      </ion-item>
+    </ion-list>
+
   </form>
 
 </ion-content>

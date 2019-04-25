@@ -19,16 +19,30 @@ page-home {
     padding-right: 0px;
   }
 
-  h2 {
-    color: color($colors, light);
-  }
-
-  .button-md {
-    background-color: color($colors, danger);
-  }
+  // .button-md {
+  //   background-color: color($colors, danger);
+  // }
 
   .card-header {
     margin: 0px;
     width: 100%;
+    background-color: color($colors, primary);
+    .item-md {
+      background-color: transparent;
+    }
+  }
+
+  // ion-card.card-header.card.card-md {
+  //   background-color: color($colors, danger);
+  // }
+  //
+  
+
+  .card-md h1 {
+    color: #f8f8f8;
+  }
+
+  .card-md p {
+    color: #dedede;
   }
 }

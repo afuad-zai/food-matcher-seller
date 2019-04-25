@@ -28,12 +28,12 @@
       <button menuClose ion-item *ngIf="accountPvdr.loginStatus()" (click)="openPage('AnalyticPage')">
         Analytics
       </button>
-      <button menuClose ion-item (click)="openPage('SettingPage')">
+      <!-- <button menuClose ion-item (click)="openPage('SettingPage')">
         Setting
       </button>
       <button menuClose ion-item (click)="openPage('SupportPage')">
         Support
-      </button>
+      </button> -->
       <button *ngIf="accountPvdr.loginStatus()" menuClose ion-item (click)="logout()">
         Sign out
       </button>

@@ -8,4 +8,5 @@ export interface StoreInfo {
         lat: number;
         lon: number;
     };
+    categories: string[];
 }

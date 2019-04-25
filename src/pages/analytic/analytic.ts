@@ -68,7 +68,7 @@ export class AnalyticPage {
     this.timeFrequency = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     this.orderPvdr.getAnalytic(days).then((orders: Order[]) => {
       orders.forEach((order) => {
-
+        console.log(order)
         // Get completion status
         for (let i = 0; i < 3; i++) {
           if (order.status == this.labels[i]) {

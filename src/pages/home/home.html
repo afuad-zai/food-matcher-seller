@@ -21,7 +21,7 @@
       <ion-card class="card-header">
         <ion-item>
           <ion-avatar item-start>
-            <img [src]="order.userImage" (error)="storeImg.src='./assets/imgs/placeholder_store.png'" #storeImg>
+            <img [src]="order.userImage" (error)="storeImg.src='./assets/imgs/user.png'" #storeImg>
           </ion-avatar>
           <h1>{{order.userName}} </h1>
           <p>Received on {{order.timestamp | date:'hh:mm'}}</p>
@@ -45,7 +45,7 @@
         </ion-list>
 
 
-        <ion-item-sliding class="card-header">
+        <ion-item-sliding #slidingItem>
           <ion-item>
             <ion-label>
               Total Price : RM {{ totalPrice[i] | number:'1.2-2'}}

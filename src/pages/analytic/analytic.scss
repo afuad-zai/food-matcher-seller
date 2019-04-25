@@ -7,4 +7,14 @@ page-analytic {
   h2 {
     color: color($colors, light);
   }
+
+  .toggle-md.toggle-checked .toggle-icon {
+    background-color: #ffc8c8;
+  }
+
+  .toggle-md.toggle-checked .toggle-inner {
+    -webkit-transform: translate3d(16px, 0, 0);
+    transform: translate3d(16px, 0, 0);
+    background-color: color($colors, danger);
+  }
 }

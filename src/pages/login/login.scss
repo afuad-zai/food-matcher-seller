@@ -3,27 +3,33 @@ page-login {
     margin-top: 25px;
     margin-bottom: 12px;
   }
-  .content {
-    background-color: color($colors, primary);
-  }
-  //   .item {
-  //     background-color: color($colors, primary);
-  //   }
 
-  ion-label[fixed] {
+  ion-segment-button.segment-button.segment-activated {
+    border-color: color($colors, danger) !important;
+    color: color($colors, danger) !important;
+  }
+
+  .label-md[fixed] {
+    color: color($colors, danger);
     padding-left: 10px;
   }
-  .item-md {
-    margin-top: 8px;
-    padding-right: 16px;
-    border-radius: 50px 50px 50px 50px;
+
+  .item-input .label-md {
+    color: color($colors, danger);
   }
 
-  ion-input {
-    background-color: #fff;
-    
-    .text-input-md {
-      text-align: center;
-    }
+  submit-button {
+    padding: 0 0.6em !important;
+    height: 45px !important;
+    font-size: 1.2rem !important;
+  }
+
+  .item-md {
+    padding-right: 16px;
+  }
+
+  .button-md-light {
+    color: #fff;
+    background-color: color($colors, danger);
   }
 }

@@ -20,9 +20,9 @@ export class LoginPage {
   password2: string;
   opt: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private accountPvdr: AccountProvider, private toastCtrl: ToastController) {
-    this.email = "test@foodmatcher.com";
-    this.password = "test";
-    this.password2 = "test";
+    this.email = "western_stall@foodmatcher.com";
+    this.password = "123456";
+    this.password2 = "123456";
     this.opt = 'signin';
   }
 
@@ -31,6 +31,16 @@ export class LoginPage {
   }
 
   doSignin() {
+    if (!this.validEmail()) {
+      this.displayToast("Please enter valid email address.")
+      return;
+    }
+
+    if (this.password.length < 6) {
+      this.displayToast("Password length must have more than 6 characters.")
+      return;
+    }
+
     this.accountPvdr.login(this.email, this.password).then(() => {
       this.displayToast("You have signed in.");
     }).catch((status) => {
@@ -39,18 +49,31 @@ export class LoginPage {
   }
 
   doSignup() {
-    if (this.password != this.password2) {
-      this.displayToast('Re-entered password is incorrect.')
-    } else {
-      this.accountPvdr.signup(this.email, this.password).then((status) => {
-        return this.accountPvdr.login(this.email, this.password)
-      }).then(() => {
-        this.displayToast("You have signed up and logged in.");
-        this.navCtrl.setRoot('HomePage');
-      }).catch((err) => {
-        this.displayToast(err);
-      })
+    if (!this.validEmail()) {
+      this.displayToast("Please enter valid email address.")
+      return;
     }
+
+    if (this.password.length < 6) {
+      this.displayToast("Password length must have more than 6 characters.")
+      return;
+    }
+
+    if (this.password != this.password2) {
+      this.displayToast("Password does not match.")
+      return;
+    }
+
+
+    this.accountPvdr.signup(this.email, this.password).then((status) => {
+      return this.accountPvdr.login(this.email, this.password)
+    }).then(() => {
+      this.displayToast("You have signed up and logged in.");
+      this.navCtrl.setRoot('HomePage');
+    }).catch((err) => {
+      this.displayToast(err);
+    })
+
   }
 
   displayToast(message: string) {
@@ -61,4 +84,12 @@ export class LoginPage {
     }).present();
   }
 
+  validEmail() {
+    var emailRegexp = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    if (this.email && !emailRegexp.test(this.email)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
 }

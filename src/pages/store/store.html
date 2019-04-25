@@ -31,7 +31,8 @@
 
     <ion-item class="item-middle right-item" margin-top>
       <ion-label floating>Store Location</ion-label>
-      <ion-input text-center type="text" [disabled]="true" [(ngModel)]="location" (ionChange)="valueChanged()" style="color: black">
+      <ion-input text-center type="text" [disabled]="true" [(ngModel)]="location" (ionChange)="valueChanged()"
+        style="color: black">
       </ion-input>
 
       <button class="geobutton" ion-button icon-only item-end clear (click)="getLocation()">
@@ -42,7 +43,7 @@
 
     <ion-item>
       <ion-label floating>Opening Time</ion-label>
-      <ion-datetime text-center displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="openTime"
+      <ion-datetime text-center displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="storeInfo.openTime"
         (ngModelChange)="valueChanged()">
       </ion-datetime>
     </ion-item>
@@ -50,15 +51,28 @@
 
     <ion-item>
       <ion-label floating>Closing Time</ion-label>
-      <ion-datetime text-center displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="closeTime"
+      <ion-datetime text-center displayFormat="HH:mm" pickerFormat="HH mm" [(ngModel)]="storeInfo.closeTime"
         (ngModelChange)="valueChanged()">
       </ion-datetime>
     </ion-item>
 
+    <ion-item>
+      <ion-label floating>Categories</ion-label>
+      <ion-select [(ngModel)]="storeInfo.categories" multiple="true" (ionChange)="valueChanged()">
+        <ion-option value="malay">Malay Food</ion-option>
+        <ion-option value="chinese">Indian Food</ion-option>
+        <ion-option value="indian">Chinese Food</ion-option>
+        <ion-option value="western">Western Food</ion-option>
+        <ion-option value="traditional">Traditional Food</ion-option>
+        <ion-option value="bakery">Bakery</ion-option>
+        <ion-option value="instant">Instant Food</ion-option>
+        <ion-option value="others">Others</ion-option>
+      </ion-select>
+    </ion-item>
+
 
     <ion-item>
-      <button item-end ion-button round (click)="updateStore()">Update
-        Menu</button>
+      <button item-end ion-button round (click)="updateStore()">Update Store</button>
     </ion-item>
   </ion-list>
 

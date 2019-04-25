@@ -28,11 +28,22 @@ export class StorePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private accountPvdr: AccountProvider, private locationPvdr: LocationProvider,
     private alertCtrl: AlertController, private toastCtrl: ToastController, private cameraPvdr: CameraProvider) {
-    this.init();
+    this.storeInfo = {
+      name: "",
+      id: "",
+      openTime: "",
+      closeTime: "",
+      imageUrl: "",
+      location: {
+        lat: 0, lon: 0
+      },
+      categories: []
+    }
   }
 
   ionViewDidLoad() {
     this.navBar.backButtonClick = () => this.backButtonClick();
+    this.init();
   }
 
   init() {
@@ -42,22 +53,19 @@ export class StorePage {
       openTime: this.accountPvdr.openTime,
       closeTime: this.accountPvdr.closeTime,
       imageUrl: this.accountPvdr.image,
-      location: this.accountPvdr.location
+      location: this.accountPvdr.location,
+      categories: this.accountPvdr.categories
     }
 
     console.log(this.storeInfo)
 
+    this.setLocationDisplay();
     this.changes = false;
     this.image = this.accountPvdr.image;
   }
 
   updateStore() {
-    this.accountPvdr.name = this.storeInfo.name;
-    this.accountPvdr.image = this.storeInfo.imageUrl;
-    this.accountPvdr.location = this.storeInfo.location;
-    this.accountPvdr.openTime = this.storeInfo.openTime;
-    this.accountPvdr.closeTime = this.storeInfo.closeTime;
-
+    console.log(this.storeInfo)
     this.alertCtrl.create({
       title: 'Update Info',
       message: 'Do you wish to update your store information?',
@@ -72,12 +80,7 @@ export class StorePage {
         {
           text: 'Yes',
           handler: () => {
-            this.accountPvdr.updateProfile().then((res) => {
-              this.displayToast("Update store information success!");
-              this.navCtrl.pop();
-            }).catch((err) => {
-              this.displayToast("Failed to update store information!");
-            })
+            this.updateStoreInfo();
           }
         }
       ]
@@ -85,12 +88,26 @@ export class StorePage {
 
   }
 
+  updateStoreInfo() {
+    this.accountPvdr.name = this.storeInfo.name;
+    this.accountPvdr.image = this.storeInfo.imageUrl;
+    this.accountPvdr.location = this.storeInfo.location;
+    this.accountPvdr.openTime = this.storeInfo.openTime;
+    this.accountPvdr.closeTime = this.storeInfo.closeTime;
+    this.accountPvdr.categories = this.storeInfo.categories;
+    this.accountPvdr.updateProfile().then((res) => {
+      this.displayToast("Store information updated!");
+      this.navCtrl.pop();
+    }).catch((err) => {
+      this.displayToast("Failed to update store information!");
+    })
+  }
+
   getPhoto() {
     this.cameraPvdr.getPhoto().then(image => {
       this.accountPvdr.uploadProfileImage(image.path).then((res) => {
         this.image = image.webPath;
-        let tempImagePath: any = res;
-        this.storeInfo.imageUrl = tempImagePath;
+        this.storeInfo.imageUrl = res.response.toString();
       })
     })
     console.log("changed image")

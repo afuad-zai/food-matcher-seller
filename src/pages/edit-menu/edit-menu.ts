@@ -39,7 +39,7 @@ export class EditMenuPage {
       imageURL: [this.menuInfo.imageURL, Validators.required],
       preparation_time: [this.menuInfo.preparation_time, Validators.required],
       price: [this.menuInfo.price.toFixed(2), Validators.required],
-      available: [this.menuInfo.available, Validators.required]
+      available: [!this.menuInfo.available, Validators.required]
     });
 
   }
@@ -51,7 +51,7 @@ export class EditMenuPage {
   getPhoto() {
     this.cameraPvdr.getPhoto().then(image => {
       this.accountPvdr.uploadProfileImage(image.path).then((res) => {
-        this.menuForm.controls['imageURL'].setValue(res);
+        this.menuForm.controls['imageURL'].setValue(res.response);
         this.imageURL = image.webPath;
       })
     })
@@ -77,8 +77,14 @@ export class EditMenuPage {
       message: 'Are you sure you wish to update this menu?',
       buttons: [
         {
-          text: 'Yes',
+          text: 'No',
           role: 'cancel',
+          handler: () => {
+
+          }
+        },
+        {
+          text: 'Yes',
           handler: () => {
             this.menuPvdr.updateMenus(newMenu).then((res) => {
               this.displayToast("Update menu success!");
@@ -88,12 +94,7 @@ export class EditMenuPage {
             })
           }
         },
-        {
-          text: 'No',
-          handler: () => {
 
-          }
-        }
       ]
     }).present();
 
@@ -127,17 +128,17 @@ export class EditMenuPage {
       buttons: [
         {
           text: 'No',
+          role: 'cancel',
           handler: () => {
 
           }
         },
         {
           text: 'Yes',
-          role: 'cancel',
           handler: () => {
             this.navCtrl.pop();
           }
-        }
+        },
       ]
     }).present();
   }

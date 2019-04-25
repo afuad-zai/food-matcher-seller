@@ -43,4 +43,11 @@ page-store {
     height: 40px;
     font-size: 1.4rem;
   }
+
+  button.item-button.button.button-md.button-default.button-default-md.button-round.button-round-md {
+    background-color: color($colors, danger);
+    width: 150px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { StoreInfo } from '../../interfaces/store';
 import { MenuController } from 'ionic-angular';
-
+import moment from 'moment';
 /*
   Generated class for the AccountProvider provider.
 
@@ -32,7 +32,8 @@ export class AccountProvider {
         lat: 0,
         lon: 0
       },
-      openTime: ''
+      openTime: '',
+      categories: []
     }
   }
 
@@ -65,10 +66,16 @@ export class AccountProvider {
             location: {
               lat: newStore.location._latitude,
               lon: newStore.location._longitude
-            }
+            },
+            categories: newStore.categories
           }
+
+          //console.log(this._store)
+
           this._loggedIn = true;
           this.menuCtrl.enable(this._loggedIn, 'myMenu');
+
+          resolve(true)
         }
       })
     })
@@ -101,8 +108,25 @@ export class AccountProvider {
     let api = `${this._url}/${this._store.id}/store`;
 
     return new Promise((resolve, reject) => {
-      this.http.post(api, this._store).subscribe((res: any) => {
-        resolve(true)
+
+      let storeInfo = {
+        name: this._store.name,
+        imageURL: this._store.imageUrl,
+        closeTime: this._store.closeTime,
+        openTime: this._store.openTime,
+        location: {
+          latitude: this._store.location.lat,
+          longitude: this._store.location.lon
+        },
+        categories: this._store.categories
+      }
+
+      this.http.post(api, storeInfo).subscribe((res: any) => {
+        if (res.err) {
+          reject(res.err)
+        } else {
+          resolve(res.status)
+        }
       })
     })
   }
@@ -148,6 +172,14 @@ export class AccountProvider {
 
   get closeTime(): string {
     return this._store.closeTime;
+  }
+
+  get categories(): string[] {
+    return this._store.categories;
+  }
+
+  set categories(categories: string[]) {
+    this._store.categories = categories;
   }
 
   uploadProfileImage(imgSrc: string) {

@@ -7,7 +7,8 @@ export interface Order {
     userId: string,
     status: string,
     timestamp: string,
-    rated: boolean,
+    userRating: string,
+    storeRating: string,
     menus: MenuInfo[]
 }
 

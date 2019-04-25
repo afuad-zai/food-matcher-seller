@@ -58,7 +58,7 @@ export class HomePage {
         {
           text: "Yes",
           handler: data => {
-            this.orderPvdr.cancelOrder(order).then((message: string) => {
+            this.orderPvdr.updateOrder({orderId: order.orderId, status: "Cancelled"}).then((message: string) => {
               this.displayToast(message);
               this.getNewOrder();
             })

@@ -32,9 +32,9 @@ export class AddMenuPage {
     this.menuForm = this.formBuilder.group({
       name: ['', Validators.required],
       imageURL: ['', Validators.required],
-      preparation_time: ['', Validators.required],
+      preparation_time: ['00:00:00', Validators.required],
       price: ['', Validators.required],
-      available: ['true', Validators.required]
+      available: ['', Validators.required]
     });
   }
 
@@ -45,7 +45,7 @@ export class AddMenuPage {
   getPhoto() {
     this.cameraPvdr.getPhoto().then(image => {
       this.accountPvdr.uploadProfileImage(image.path).then((res) => {
-        this.menuForm.controls['imageURL'].setValue(res);
+        this.menuForm.controls['imageURL'].setValue(res.response.toString());
         this.imageURL = image.webPath;
       })
     })
@@ -61,7 +61,7 @@ export class AddMenuPage {
     let newMenu: MenuInfo = {
       menuId: "",
       imageURL: this.menuForm.controls['imageURL'].value,
-      available: this.menuForm.controls['available'].value,
+      available: !this.menuForm.controls['available'].value,
       name: this.menuForm.controls['name'].value,
       preparation_time: this.menuForm.controls['preparation_time'].value,
       price: parseFloat(newPrice),

@@ -40,7 +40,7 @@ export class OrderProvider {
     })
   }
 
-  cancelOrder(order: Order) {
+  updateOrder(order: any) {
     let api = `${this.url}/${this.accountPvdr.storeId}/order`;
     return new Promise((resolve, reject) => {
       this.http.put(api, order)

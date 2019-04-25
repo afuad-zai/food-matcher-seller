@@ -1,54 +1,54 @@
 page-edit-menu {
-  ion-datetime {
-    margin: auto;
+  .item-input .label-md {
+    color: color($colors, danger);
   }
 
-  .item-profile {
-    .item-md.item-block .item-inner {
-      border-bottom: 0px;
-    }
-
-    .item-avatar > img:first-child {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-    }
+  .card-md > .item:last-child {
+    padding-top: 0px;
+    padding-right: 0px;
   }
 
-  .item-middle {
-    margin-top: 8px;
-    margin: auto;
-    width: 70%;
-
-    .button-middle {
-      height: 45px;
-      margin-top: 16px;
-      margin-left: 16px;
-      width: calc(100% - 24px);
-    }
+  .item-md {
+    padding-top: 8px;
+    padding-right: 16px;
   }
 
-  .item-md.item-block .item-inner {
-    border-bottom: 0px;
+  .label-md[stacked],
+  .label-md[floating],
+  .label-md[fixed] {
+    color: color($colors, danger);
   }
 
-  ion-input {
-    border-radius: 50px 50px 50px 50px;
-    .text-input-md {
-      text-align: center;
-    }
+  ion-item.item.item-block.item-md.item-toggle.item-label-fixed {
+    margin-top: 24px;
   }
 
-  ion-label[fixed] {
-    padding-left: 10px;
+  submit-button {
+    padding: 0 0.6em !important;
+    height: 45px !important;
+    font-size: 1.2rem !important;
   }
 
-  .label-price {
-    flex: 0 0 40px;
-    min-width: 40px;
+  button.disable-hover.item-button.button.button-md.button-default.button-default-md.button-round.button-round-md {
+    background-color: color($colors, danger);
+    width: 150px;
+    height: 40px;
+    font-size: 1.4rem;
   }
 
-  .select-md {
-    padding: 0px;
+  button.item-button.button.button-md.button-default.button-default-md.button-round.button-round-md {
+    background-color: color($colors, danger);
+    width: 150px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  .toggle-md.toggle-checked .toggle-icon {
+    background-color: #ffc8c8;
+  }
+  .toggle-md.toggle-checked .toggle-inner {
+    -webkit-transform: translate3d(16px, 0, 0);
+    transform: translate3d(16px, 0, 0);
+    background-color: color($colors, danger);
   }
 }
