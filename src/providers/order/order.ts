@@ -27,6 +27,21 @@ export class OrderProvider {
     })
   }
 
+  getOrder() {
+    let api = `${this.url}/${this.accountPvdr.storeId}/all-order`;
+    return new Promise((resolve, reject) => {
+      this.http.get(api)
+        .subscribe((data: any) => {
+          if (data.err) {
+            reject(data.err)
+          } else {
+            resolve(data.orders)
+          }
+
+        })
+    })
+  }
+
   getAnalytic(days: number) {
     let api = `${this.url}/${this.accountPvdr.storeId}/analytic/${days}`;
     return new Promise((resolve, reject) => {

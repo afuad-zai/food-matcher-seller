@@ -36,8 +36,9 @@ export class AnalyticPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private orderPvdr: OrderProvider, private menuPvdr: MenuProvider,
     private toastCtrl: ToastController) {
-    this.labels = ['Completed', 'Incomplete', 'Canceled'];
+    this.labels = ['Completed', 'Incomplete', 'Cancelled'];
     this.timeFrequencyLabel = [];
+
     for (let i = 0; i < 24; i++) {
       if (i < 10) {
         this.timeFrequencyLabel.push(`0${i}:00`)
@@ -45,6 +46,7 @@ export class AnalyticPage {
         this.timeFrequencyLabel.push(`${i}:00`)
       }
     }
+    
     this.toggled = false;
     this.showChart = false;
   }
