@@ -20,9 +20,9 @@ export class LoginPage {
   password2: string;
   opt: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private accountPvdr: AccountProvider, private toastCtrl: ToastController) {
-    this.email = "western_stall@foodmatcher.com";
-    this.password = "123456";
-    this.password2 = "123456";
+    this.email = "";
+    this.password = "";
+    this.password2 = "";
     this.opt = 'signin';
   }
 

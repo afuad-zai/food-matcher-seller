@@ -70,11 +70,11 @@ export class AddMenuPage {
 
     this.alertCtrl.create({
       title: 'Add Menu',
-      message: 'Are you sure yo want to add this menu?',
+      message: 'Do you want to add this menu?',
       buttons: [
         {
           text: 'Yes',
-          role: 'cancel',
+          
           handler: () => {
             this.menuPvdr.addMenus(this.accountPvdr.storeId, newMenu).then((res) => {
               this.displayToast("Add menu success!");
@@ -85,6 +85,7 @@ export class AddMenuPage {
           }
         },
         {
+          role: 'cancel',
           text: 'No',
           handler: () => {
 

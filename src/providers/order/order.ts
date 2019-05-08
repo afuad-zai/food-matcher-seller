@@ -21,6 +21,10 @@ export class OrderProvider {
     return new Promise((resolve, reject) => {
       this.http.get(api)
         .subscribe((data: any) => {
+          if(data.err) {
+            reject(data.err)
+            return;
+          }
           console.log(data.orders)
           resolve(data.orders)
         })

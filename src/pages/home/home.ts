@@ -18,6 +18,12 @@ export class HomePage {
     this.totalPrice = [];
   }
 
+  doRefresh(refresher) {
+    this.getNewOrder().then(() => {
+      refresher.complete();
+    })
+  }
+
   ionViewWillEnter() {
     this.getNewOrder()
   }
@@ -25,7 +31,7 @@ export class HomePage {
   getNewOrder() {
     this.orderList = [];
     this.totalPrice = [];
-    this.orderPvdr.getNewOrder().then((orderList: Order[]) => {
+    return this.orderPvdr.getNewOrder().then((orderList: Order[]) => {
       this.orderList = orderList;
       this.orderList.forEach(order => {
         let total = 0;
@@ -34,7 +40,7 @@ export class HomePage {
         })
         this.totalPrice.push(total);
       })
-    })
+    }).catch(()=>console.log())
   }
 
   completeOrder(order: Order) {
@@ -58,7 +64,7 @@ export class HomePage {
         {
           text: "Yes",
           handler: data => {
-            this.orderPvdr.updateOrder({orderId: order.orderId, status: "Cancelled"}).then((message: string) => {
+            this.orderPvdr.updateOrder({ orderId: order.orderId, status: "Cancelled" }).then((message: string) => {
               this.displayToast(message);
               this.getNewOrder();
             })

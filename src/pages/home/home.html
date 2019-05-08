@@ -9,6 +9,10 @@
 
 <ion-content padding>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
 
   <div *ngIf="orderList && !orderList.length" class="emptyState">
     <img src="./assets/imgs/emptycart.svg">
