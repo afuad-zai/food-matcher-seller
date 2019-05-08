@@ -10,9 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class QrcodeProvider {
 
-  constructor(private barcodeScanner: BarcodeScanner) {
-    console.log('Hello QrcodeProvider Provider');
-  }
+  constructor(private barcodeScanner: BarcodeScanner) {}
 
   scan() {
     return new Promise((resolve, reject) => {

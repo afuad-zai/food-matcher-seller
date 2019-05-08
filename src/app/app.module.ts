@@ -19,6 +19,7 @@ import { QrcodeProvider } from '../providers/qrcode/qrcode';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { RatingProvider } from '../providers/rating/rating';
+import { ApiProvider } from '../providers/api/api';
 
 
 
@@ -48,7 +49,8 @@ import { RatingProvider } from '../providers/rating/rating';
     LocationProvider,
     QrcodeProvider,
     BarcodeScanner,
-    RatingProvider
+    RatingProvider,
+    ApiProvider
   ]
 })
 export class AppModule {}

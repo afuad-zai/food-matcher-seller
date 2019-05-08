@@ -4,6 +4,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
 import { StoreInfo } from '../../interfaces/store';
 import { MenuController } from 'ionic-angular';
 import moment from 'moment';
+import { ApiProvider } from '../api/api';
 /*
   Generated class for the AccountProvider provider.
 
@@ -17,15 +18,15 @@ export class AccountProvider {
   private _loggedIn: boolean;
 
   constructor(public http: HttpClient, private transfer: FileTransfer,
-    private menuCtrl: MenuController) {
-    this._url = "http://35.247.136.6:3000/stores"
+    private menuCtrl: MenuController, private apiPvdr: ApiProvider) {
+    this._url = `${apiPvdr.api}/stores`;
     this.init();
   }
 
   init() {
     this._store = {
-      name: 'Seller',
-      id: 'VgM0IK41dAbirRNxxyHB',
+      name: '',
+      id: '',
       closeTime: '',
       imageUrl: '',
       location: {
@@ -184,7 +185,7 @@ export class AccountProvider {
 
   uploadProfileImage(imgSrc: string) {
     // Destination URL
-    let url = "http://35.247.136.6:3000/uploadfile";
+    let url = `${this.apiPvdr.api}/uploadfile`;
 
     // File for Upload
     var targetPath = imgSrc;

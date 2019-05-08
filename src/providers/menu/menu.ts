@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MenuInfo } from '../../interfaces/menu';
 import { AccountProvider } from '../../providers/account/account'
+import { ApiProvider } from '../api/api';
 /*
   Generated class for the MenuProvider provider.
 
@@ -12,8 +13,8 @@ import { AccountProvider } from '../../providers/account/account'
 export class MenuProvider {
   url: string
 
-  constructor(public http: HttpClient, private accountPvdr: AccountProvider) {
-    this.url = "http://35.247.136.6:3000/stores";
+  constructor(public http: HttpClient, private accountPvdr: AccountProvider, private apiPvdr: ApiProvider) {
+    this.url = `${apiPvdr.api}/stores`;
   }
 
   getMenus(storeId: String) {

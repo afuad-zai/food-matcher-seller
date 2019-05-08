@@ -15,9 +15,7 @@ export class LocationProvider {
   latitude: any;
   longitude: any;
 
-  constructor() {
-    console.log('Hello LocationProvider Provider');
-  }
+  constructor() {}
 
   public getCurrentLocation() {
     return { lat: this.latitude, lon: this.longitude };

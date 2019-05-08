@@ -11,9 +11,7 @@ const { Camera } = Plugins;
 @Injectable()
 export class CameraProvider {
 
-  constructor() {
-    console.log('Hello CameraProvider Provider');
-  }
+  constructor() {}
 
   getPhoto() {
     return Camera.getPhoto({
